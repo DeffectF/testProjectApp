@@ -11,7 +11,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(App\Services\StatisticsService::class, function () {
+            return new App\Services\StatisticsService();
+        });
     }
 
     /**

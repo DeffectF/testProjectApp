@@ -18,6 +18,7 @@ use HasFactory;
           return $this->belongsTo(User::class,Category::class);//Могу ли я тааким образом через запятую перечислять отношения ?
       }  */
 
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
