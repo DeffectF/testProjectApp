@@ -11,13 +11,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Post extends Model
 {
 use HasFactory;
-    /*
-     public function user(): BelongsTo
-      {
-
-          return $this->belongsTo(User::class,Category::class);//Могу ли я тааким образом через запятую перечислять отношения ?
-      }  */
-
 
     public function user(): BelongsTo
     {

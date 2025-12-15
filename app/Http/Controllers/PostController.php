@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
@@ -13,11 +14,8 @@ use App\Services\StatisticsService;
 
 class PostController extends Controller
 {
-    protected StatisticsService $statsService;
-
-    public function __construct(StatisticsService $statsService)
+    public function __construct(protected StatisticsService $statsService)
     {
-        $this->statsService = $statsService;
     }
 
     public function stats(): \Illuminate\Http\JsonResponse
@@ -25,9 +23,10 @@ class PostController extends Controller
         $postCount = $this->statsService->getPostCount();
         return response()->json(['post_count' => $postCount], 200);
     }
+
     public function index(): PostCollection
     {
-        $posts = Post::with(['author', 'category'])->paginate();
+        $posts = Post::with(['user', 'category'])->paginate();
         return new PostCollection($posts);
     }
 
@@ -38,12 +37,11 @@ class PostController extends Controller
             'content' => $request->input('content'),
             'category_id' => $request->input('category_id')
         ]);
-
         return new PostResource($post);
     }
 
     public function show(Post $post): PostResource
     {
-        return new PostResource($post->loadMissing(['author', 'category']));
+        return new PostResource($post->loadMissing(['user', 'category']));
     }
 }
