@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\ApiVersionMiddleware;
 use App\Http\Middleware\DynamicCors;
 use App\Http\Middleware\RequestResponseLogger;
+use App\Http\Middleware\TenantIsolation;
 use App\Http\Middleware\ThrottleRequestsByIpMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ $routeMiddleware = [
     DynamicCors::class,
     RequestResponseLogger::class,
     ApiVersionMiddleware::class,
+    TenantIsolation::class,
 ];
 
 Route::group(['prefix' => 'api'], function () {
