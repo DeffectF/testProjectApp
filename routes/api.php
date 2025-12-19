@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\ApiVersionMiddleware;
 use App\Http\Middleware\DynamicCors;
 use App\Http\Middleware\RequestResponseLogger;
 use App\Http\Middleware\ThrottleRequestsByIpMiddleware;
@@ -18,6 +19,7 @@ $routeMiddleware = [
     'throttle.ip' => ThrottleRequestsByIpMiddleware::class,
     DynamicCors::class,
     RequestResponseLogger::class,
+    ApiVersionMiddleware::class,
 ];
 
 Route::group(['prefix' => 'api'], function () {
