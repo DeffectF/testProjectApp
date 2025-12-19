@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
@@ -56,6 +56,7 @@ return [
             'driver' => 'stack',
             'channels' => explode(',', (string) env('LOG_STACK', 'single')),
             'ignore_exceptions' => false,
+            'path' => storage_path('logs/request_response.log'),
         ],
 
         'single' => [
