@@ -12,6 +12,7 @@ Route::middleware('ensure.token.is.valid')->post('/posts/store', [PostController
 
 $routeMiddleware = [
     'throttle.ip' => \App\Http\Middleware\ThrottleRequestsByIpMiddleware::class,
+    \App\Http\Middleware\DynamicCors::class,
 ];
 
 Route::group(['prefix' => 'api'], function () {
@@ -20,3 +21,5 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('/v2/posts', [\App\Http\Controllers\PostController::class, 'list']);
     });
 });
+
+
